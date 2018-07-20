@@ -1,0 +1,11 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+buildreq-kde
+libgcrypt-dev
+gpgme
+gpgme-dev
+docbook-xml
+libxml2
+libxml2-dev
+libxslt
+libxslt-dev
