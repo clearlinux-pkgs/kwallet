@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kwallet
-Version  : 5.48.0
-Release  : 1
-URL      : https://download.kde.org/stable/frameworks/5.48/kwallet-5.48.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.48/kwallet-5.48.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.48/kwallet-5.48.0.tar.xz.sig
+Version  : 5.49.0
+Release  : 2
+URL      : https://download.kde.org/stable/frameworks/5.49/kwallet-5.49.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.49/kwallet-5.49.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.49/kwallet-5.49.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.0 LGPL-2.1
@@ -26,12 +26,8 @@ BuildRequires : gpgme
 BuildRequires : gpgme-dev
 BuildRequires : kcodecs-dev
 BuildRequires : kdbusaddons-dev
-BuildRequires : kdoctools
-BuildRequires : kdoctools-dev
-BuildRequires : ki18n-dev
 BuildRequires : kiconthemes-dev
 BuildRequires : knotifications-dev
-BuildRequires : kservice-dev
 BuildRequires : kwidgetsaddons-dev
 BuildRequires : kwindowsystem-dev
 BuildRequires : libassuan-dev
@@ -41,6 +37,7 @@ BuildRequires : libxml2
 BuildRequires : libxml2-dev
 BuildRequires : libxslt
 BuildRequires : libxslt-dev
+BuildRequires : qtbase-dev qtbase-extras mesa-dev
 
 %description
 This directory consists of one daemon: kwalletd, and one library, in backend.
@@ -113,14 +110,14 @@ man components for the kwallet package.
 
 
 %prep
-%setup -q -n kwallet-5.48.0
+%setup -q -n kwallet-5.49.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532060789
+export SOURCE_DATE_EPOCH=1534100866
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -128,7 +125,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1532060789
+export SOURCE_DATE_EPOCH=1534100866
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kwallet
 cp COPYING.LIB %{buildroot}/usr/share/doc/kwallet/COPYING.LIB
@@ -172,9 +169,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Wallet.so.5
-/usr/lib64/libKF5Wallet.so.5.48.0
+/usr/lib64/libKF5Wallet.so.5.49.0
 /usr/lib64/libkwalletbackend5.so.5
-/usr/lib64/libkwalletbackend5.so.5.48.0
+/usr/lib64/libkwalletbackend5.so.5.49.0
 
 %files license
 %defattr(-,root,root,-)
