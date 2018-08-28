@@ -6,7 +6,7 @@
 #
 Name     : kwallet
 Version  : 5.49.0
-Release  : 2
+Release  : 3
 URL      : https://download.kde.org/stable/frameworks/5.49/kwallet-5.49.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.49/kwallet-5.49.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.49/kwallet-5.49.0.tar.xz.sig
@@ -26,8 +26,12 @@ BuildRequires : gpgme
 BuildRequires : gpgme-dev
 BuildRequires : kcodecs-dev
 BuildRequires : kdbusaddons-dev
+BuildRequires : kdoctools
+BuildRequires : kdoctools-dev
+BuildRequires : ki18n-dev
 BuildRequires : kiconthemes-dev
 BuildRequires : knotifications-dev
+BuildRequires : kservice-dev
 BuildRequires : kwidgetsaddons-dev
 BuildRequires : kwindowsystem-dev
 BuildRequires : libassuan-dev
@@ -117,7 +121,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1534100866
+export SOURCE_DATE_EPOCH=1535433166
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -125,7 +129,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1534100866
+export SOURCE_DATE_EPOCH=1535433166
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kwallet
 cp COPYING.LIB %{buildroot}/usr/share/doc/kwallet/COPYING.LIB
@@ -151,6 +155,7 @@ popd
 /usr/share/dbus-1/services/org.kde.kwalletd5.service
 /usr/share/knotifications5/kwalletd.notifyrc
 /usr/share/kservices5/kwalletd5.desktop
+/usr/share/xdg/kwallet.categories
 
 %files dev
 %defattr(-,root,root,-)
