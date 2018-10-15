@@ -5,35 +5,25 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kwallet
-Version  : 5.50.0
-Release  : 5
-URL      : https://download.kde.org/stable/frameworks/5.50/kwallet-5.50.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.50/kwallet-5.50.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.50/kwallet-5.50.0.tar.xz.sig
+Version  : 5.51.0
+Release  : 6
+URL      : https://download.kde.org/stable/frameworks/5.51/kwallet-5.51.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.51/kwallet-5.51.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.51/kwallet-5.51.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.0 LGPL-2.1
-Requires: kwallet-bin
-Requires: kwallet-lib
-Requires: kwallet-data
-Requires: kwallet-license
-Requires: kwallet-locales
-Requires: kwallet-man
+Requires: kwallet-bin = %{version}-%{release}
+Requires: kwallet-data = %{version}-%{release}
+Requires: kwallet-lib = %{version}-%{release}
+Requires: kwallet-license = %{version}-%{release}
+Requires: kwallet-locales = %{version}-%{release}
+Requires: kwallet-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : docbook-xml
 BuildRequires : gpgme
 BuildRequires : gpgme-dev
-BuildRequires : kcodecs-dev
-BuildRequires : kdbusaddons-dev
-BuildRequires : kdoctools
-BuildRequires : kdoctools-dev
-BuildRequires : ki18n-dev
-BuildRequires : kiconthemes-dev
-BuildRequires : knotifications-dev
-BuildRequires : kservice-dev
-BuildRequires : kwidgetsaddons-dev
-BuildRequires : kwindowsystem-dev
 BuildRequires : libassuan-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libgpg-error-dev
@@ -41,7 +31,7 @@ BuildRequires : libxml2
 BuildRequires : libxml2-dev
 BuildRequires : libxslt
 BuildRequires : libxslt-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
 This directory consists of one daemon: kwalletd, and one library, in backend.
@@ -51,9 +41,9 @@ encryption.
 %package bin
 Summary: bin components for the kwallet package.
 Group: Binaries
-Requires: kwallet-data
-Requires: kwallet-license
-Requires: kwallet-man
+Requires: kwallet-data = %{version}-%{release}
+Requires: kwallet-license = %{version}-%{release}
+Requires: kwallet-man = %{version}-%{release}
 
 %description bin
 bin components for the kwallet package.
@@ -70,10 +60,10 @@ data components for the kwallet package.
 %package dev
 Summary: dev components for the kwallet package.
 Group: Development
-Requires: kwallet-lib
-Requires: kwallet-bin
-Requires: kwallet-data
-Provides: kwallet-devel
+Requires: kwallet-lib = %{version}-%{release}
+Requires: kwallet-bin = %{version}-%{release}
+Requires: kwallet-data = %{version}-%{release}
+Provides: kwallet-devel = %{version}-%{release}
 
 %description dev
 dev components for the kwallet package.
@@ -82,8 +72,8 @@ dev components for the kwallet package.
 %package lib
 Summary: lib components for the kwallet package.
 Group: Libraries
-Requires: kwallet-data
-Requires: kwallet-license
+Requires: kwallet-data = %{version}-%{release}
+Requires: kwallet-license = %{version}-%{release}
 
 %description lib
 lib components for the kwallet package.
@@ -114,26 +104,26 @@ man components for the kwallet package.
 
 
 %prep
-%setup -q -n kwallet-5.50.0
+%setup -q -n kwallet-5.51.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536436221
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1539640974
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1536436221
+export SOURCE_DATE_EPOCH=1539640974
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/kwallet
-cp COPYING.LIB %{buildroot}/usr/share/doc/kwallet/COPYING.LIB
-cp src/runtime/kwallet-query/COPYING.LIB %{buildroot}/usr/share/doc/kwallet/src_runtime_kwallet-query_COPYING.LIB
+mkdir -p %{buildroot}/usr/share/package-licenses/kwallet
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kwallet/COPYING.LIB
+cp src/runtime/kwallet-query/COPYING.LIB %{buildroot}/usr/share/package-licenses/kwallet/src_runtime_kwallet-query_COPYING.LIB
 pushd clr-build
 %make_install
 popd
@@ -174,17 +164,17 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Wallet.so.5
-/usr/lib64/libKF5Wallet.so.5.50.0
+/usr/lib64/libKF5Wallet.so.5.51.0
 /usr/lib64/libkwalletbackend5.so.5
-/usr/lib64/libkwalletbackend5.so.5.50.0
+/usr/lib64/libkwalletbackend5.so.5.51.0
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/kwallet/COPYING.LIB
-/usr/share/doc/kwallet/src_runtime_kwallet-query_COPYING.LIB
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/kwallet/COPYING.LIB
+/usr/share/package-licenses/kwallet/src_runtime_kwallet-query_COPYING.LIB
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/kwallet-query.1
 
 %files locales -f kwallet-query.lang -f kwalletd5.lang
