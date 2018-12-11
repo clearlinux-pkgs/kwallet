@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kwallet
-Version  : 5.52.0
-Release  : 8
-URL      : https://download.kde.org/stable/frameworks/5.52/kwallet-5.52.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.52/kwallet-5.52.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.52/kwallet-5.52.0.tar.xz.sig
+Version  : 5.53.0
+Release  : 9
+URL      : https://download.kde.org/stable/frameworks/5.53/kwallet-5.53.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.53/kwallet-5.53.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.53/kwallet-5.53.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.0 LGPL-2.1
@@ -24,16 +24,6 @@ BuildRequires : buildreq-kde
 BuildRequires : docbook-xml
 BuildRequires : gpgme
 BuildRequires : gpgme-dev
-BuildRequires : kcodecs-dev
-BuildRequires : kdbusaddons-dev
-BuildRequires : kdoctools
-BuildRequires : kdoctools-dev
-BuildRequires : ki18n-dev
-BuildRequires : kiconthemes-dev
-BuildRequires : knotifications-dev
-BuildRequires : kservice-dev
-BuildRequires : kwidgetsaddons-dev
-BuildRequires : kwindowsystem-dev
 BuildRequires : libassuan-dev
 BuildRequires : libgcrypt-dev
 BuildRequires : libgpg-error-dev
@@ -114,22 +104,22 @@ man components for the kwallet package.
 
 
 %prep
-%setup -q -n kwallet-5.52.0
+%setup -q -n kwallet-5.53.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542745368
+export SOURCE_DATE_EPOCH=1544543772
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1542745368
+export SOURCE_DATE_EPOCH=1544543772
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwallet
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kwallet/COPYING.LIB
@@ -174,9 +164,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Wallet.so.5
-/usr/lib64/libKF5Wallet.so.5.52.0
+/usr/lib64/libKF5Wallet.so.5.53.0
 /usr/lib64/libkwalletbackend5.so.5
-/usr/lib64/libkwalletbackend5.so.5.52.0
+/usr/lib64/libkwalletbackend5.so.5.53.0
 
 %files license
 %defattr(0644,root,root,0755)
