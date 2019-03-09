@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kwallet
-Version  : 5.55.0
-Release  : 12
-URL      : https://download.kde.org/stable/frameworks/5.55/kwallet-5.55.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.55/kwallet-5.55.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.55/kwallet-5.55.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 5.56.0
+Release  : 13
+URL      : https://download.kde.org/stable/frameworks/5.56/kwallet-5.56.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.56/kwallet-5.56.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.56/kwallet-5.56.0.tar.xz.sig
+Summary  : Secure and unified container for user passwords
 Group    : Development/Tools
 License  : LGPL-2.0 LGPL-2.1
 Requires: kwallet-bin = %{version}-%{release}
@@ -34,16 +34,16 @@ BuildRequires : libxslt-dev
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-This directory consists of one daemon: kwalletd, and one library, in backend.
-KWallet::Backend is used inside kwalletd to manage the actual files and
-encryption.
+Tests for opening the wallet synchronously and asynchronously
+kwalletsync - open synchronously
+kwalletasync - open asynchronously
+kwalletboth - start opening asynchronously, then, during the async call, open synchronously
 
 %package bin
 Summary: bin components for the kwallet package.
 Group: Binaries
 Requires: kwallet-data = %{version}-%{release}
 Requires: kwallet-license = %{version}-%{release}
-Requires: kwallet-man = %{version}-%{release}
 
 %description bin
 bin components for the kwallet package.
@@ -64,6 +64,7 @@ Requires: kwallet-lib = %{version}-%{release}
 Requires: kwallet-bin = %{version}-%{release}
 Requires: kwallet-data = %{version}-%{release}
 Provides: kwallet-devel = %{version}-%{release}
+Requires: kwallet = %{version}-%{release}
 
 %description dev
 dev components for the kwallet package.
@@ -104,22 +105,23 @@ man components for the kwallet package.
 
 
 %prep
-%setup -q -n kwallet-5.55.0
+%setup -q -n kwallet-5.56.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549759544
+export SOURCE_DATE_EPOCH=1552166244
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549759544
+export SOURCE_DATE_EPOCH=1552166244
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwallet
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kwallet/COPYING.LIB
@@ -164,9 +166,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Wallet.so.5
-/usr/lib64/libKF5Wallet.so.5.55.0
+/usr/lib64/libKF5Wallet.so.5.56.0
 /usr/lib64/libkwalletbackend5.so.5
-/usr/lib64/libkwalletbackend5.so.5.55.0
+/usr/lib64/libkwalletbackend5.so.5.56.0
 
 %files license
 %defattr(0644,root,root,0755)
