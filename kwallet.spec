@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kwallet
-Version  : 5.56.0
-Release  : 13
-URL      : https://download.kde.org/stable/frameworks/5.56/kwallet-5.56.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.56/kwallet-5.56.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.56/kwallet-5.56.0.tar.xz.sig
+Version  : 5.57.0
+Release  : 14
+URL      : https://download.kde.org/stable/frameworks/5.57/kwallet-5.57.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.57/kwallet-5.57.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.57/kwallet-5.57.0.tar.xz.sig
 Summary  : Secure and unified container for user passwords
 Group    : Development/Tools
 License  : LGPL-2.0 LGPL-2.1
@@ -24,9 +24,7 @@ BuildRequires : buildreq-kde
 BuildRequires : docbook-xml
 BuildRequires : gpgme
 BuildRequires : gpgme-dev
-BuildRequires : libassuan-dev
 BuildRequires : libgcrypt-dev
-BuildRequires : libgpg-error-dev
 BuildRequires : libxml2
 BuildRequires : libxml2-dev
 BuildRequires : libxslt
@@ -34,10 +32,9 @@ BuildRequires : libxslt-dev
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-Tests for opening the wallet synchronously and asynchronously
-kwalletsync - open synchronously
-kwalletasync - open asynchronously
-kwalletboth - start opening asynchronously, then, during the async call, open synchronously
+This directory consists of one daemon: kwalletd, and one library, in backend.
+KWallet::Backend is used inside kwalletd to manage the actual files and
+encryption.
 
 %package bin
 Summary: bin components for the kwallet package.
@@ -105,23 +102,22 @@ man components for the kwallet package.
 
 
 %prep
-%setup -q -n kwallet-5.56.0
+%setup -q -n kwallet-5.57.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552166244
+export SOURCE_DATE_EPOCH=1555193468
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1552166244
+export SOURCE_DATE_EPOCH=1555193468
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwallet
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kwallet/COPYING.LIB
@@ -166,9 +162,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Wallet.so.5
-/usr/lib64/libKF5Wallet.so.5.56.0
+/usr/lib64/libKF5Wallet.so.5.57.0
 /usr/lib64/libkwalletbackend5.so.5
-/usr/lib64/libkwalletbackend5.so.5.56.0
+/usr/lib64/libkwalletbackend5.so.5.57.0
 
 %files license
 %defattr(0644,root,root,0755)
