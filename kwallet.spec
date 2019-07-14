@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kwallet
-Version  : 5.59.0
-Release  : 18
-URL      : https://download.kde.org/stable/frameworks/5.59/kwallet-5.59.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.59/kwallet-5.59.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.59/kwallet-5.59.0.tar.xz.sig
+Version  : 5.60.0
+Release  : 19
+URL      : https://download.kde.org/stable/frameworks/5.60/kwallet-5.60.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.60/kwallet-5.60.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.60/kwallet-5.60.0.tar.xz.sig
 Summary  : Secure and unified container for user passwords
 Group    : Development/Tools
 License  : LGPL-2.0 LGPL-2.1
@@ -103,16 +103,17 @@ man components for the kwallet package.
 
 
 %prep
-%setup -q -n kwallet-5.59.0
+%setup -q -n kwallet-5.60.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1560035954
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1563063956
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -121,11 +122,11 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1560035954
+export SOURCE_DATE_EPOCH=1563063956
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwallet
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kwallet/COPYING.LIB
@@ -151,7 +152,7 @@ popd
 /usr/share/dbus-1/services/org.kde.kwalletd5.service
 /usr/share/knotifications5/kwalletd.notifyrc
 /usr/share/kservices5/kwalletd5.desktop
-/usr/share/xdg/kwallet.categories
+/usr/share/qlogging-categories5/kwallet.categories
 
 %files dev
 %defattr(-,root,root,-)
@@ -170,9 +171,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Wallet.so.5
-/usr/lib64/libKF5Wallet.so.5.59.0
+/usr/lib64/libKF5Wallet.so.5.60.0
 /usr/lib64/libkwalletbackend5.so.5
-/usr/lib64/libkwalletbackend5.so.5.59.0
+/usr/lib64/libkwalletbackend5.so.5.60.0
 
 %files license
 %defattr(0644,root,root,0755)
