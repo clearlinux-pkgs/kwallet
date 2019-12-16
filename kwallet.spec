@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kwallet
-Version  : 5.64.0
-Release  : 23
-URL      : https://download.kde.org/stable/frameworks/5.64/kwallet-5.64.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.64/kwallet-5.64.0.tar.xz
-Source1 : https://download.kde.org/stable/frameworks/5.64/kwallet-5.64.0.tar.xz.sig
+Version  : 5.65.0
+Release  : 24
+URL      : https://download.kde.org/stable/frameworks/5.65/kwallet-5.65.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.65/kwallet-5.65.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.65/kwallet-5.65.0.tar.xz.sig
 Summary  : Secure and unified container for user passwords
 Group    : Development/Tools
 License  : LGPL-2.0 LGPL-2.1
@@ -62,7 +62,6 @@ Requires: kwallet-bin = %{version}-%{release}
 Requires: kwallet-data = %{version}-%{release}
 Provides: kwallet-devel = %{version}-%{release}
 Requires: kwallet = %{version}-%{release}
-Requires: kwallet = %{version}-%{release}
 
 %description dev
 dev components for the kwallet package.
@@ -103,17 +102,17 @@ man components for the kwallet package.
 
 
 %prep
-%setup -q -n kwallet-5.64.0
+%setup -q -n kwallet-5.65.0
+cd %{_builddir}/kwallet-5.65.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573403064
+export SOURCE_DATE_EPOCH=1576540036
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -127,11 +126,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1573403064
+export SOURCE_DATE_EPOCH=1576540036
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwallet
-cp %{_builddir}/kwallet-5.64.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kwallet/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-cp %{_builddir}/kwallet-5.64.0/src/runtime/kwallet-query/COPYING.LIB %{buildroot}/usr/share/package-licenses/kwallet/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+cp %{_builddir}/kwallet-5.65.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kwallet/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kwallet-5.65.0/src/runtime/kwallet-query/COPYING.LIB %{buildroot}/usr/share/package-licenses/kwallet/ba8966e2473a9969bdcab3dc82274c817cfd98a1
 pushd clr-build
 %make_install
 popd
@@ -171,9 +170,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Wallet.so.5
-/usr/lib64/libKF5Wallet.so.5.64.0
+/usr/lib64/libKF5Wallet.so.5.65.0
 /usr/lib64/libkwalletbackend5.so.5
-/usr/lib64/libkwalletbackend5.so.5.64.0
+/usr/lib64/libkwalletbackend5.so.5.65.0
 
 %files license
 %defattr(0644,root,root,0755)
