@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kwallet
-Version  : 5.71.0
-Release  : 30
-URL      : https://download.kde.org/stable/frameworks/5.71/kwallet-5.71.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.71/kwallet-5.71.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.71/kwallet-5.71.0.tar.xz.sig
+Version  : 5.73.0
+Release  : 31
+URL      : https://download.kde.org/stable/frameworks/5.73/kwallet-5.73.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.73/kwallet-5.73.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.73/kwallet-5.73.0.tar.xz.sig
 Summary  : Secure and unified container for user passwords
 Group    : Development/Tools
 License  : LGPL-2.0 LGPL-2.1
@@ -114,15 +114,15 @@ man components for the kwallet package.
 
 
 %prep
-%setup -q -n kwallet-5.71.0
-cd %{_builddir}/kwallet-5.71.0
+%setup -q -n kwallet-5.73.0
+cd %{_builddir}/kwallet-5.73.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1592256366
+export SOURCE_DATE_EPOCH=1597699538
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -134,15 +134,15 @@ export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1592256366
+export SOURCE_DATE_EPOCH=1597699538
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwallet
-cp %{_builddir}/kwallet-5.71.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kwallet/9a1929f4700d2407c70b507b3b2aaf6226a9543c
-cp %{_builddir}/kwallet-5.71.0/src/runtime/kwallet-query/COPYING.LIB %{buildroot}/usr/share/package-licenses/kwallet/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+cp %{_builddir}/kwallet-5.73.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kwallet/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kwallet-5.73.0/src/runtime/kwallet-query/COPYING.LIB %{buildroot}/usr/share/package-licenses/kwallet/ba8966e2473a9969bdcab3dc82274c817cfd98a1
 pushd clr-build
 %make_install
 popd
@@ -164,6 +164,7 @@ popd
 /usr/share/knotifications5/kwalletd.notifyrc
 /usr/share/kservices5/kwalletd5.desktop
 /usr/share/qlogging-categories5/kwallet.categories
+/usr/share/qlogging-categories5/kwallet.renamecategories
 
 %files dev
 %defattr(-,root,root,-)
@@ -182,9 +183,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Wallet.so.5
-/usr/lib64/libKF5Wallet.so.5.71.0
+/usr/lib64/libKF5Wallet.so.5.73.0
 /usr/lib64/libkwalletbackend5.so.5
-/usr/lib64/libkwalletbackend5.so.5.71.0
+/usr/lib64/libkwalletbackend5.so.5.73.0
 
 %files license
 %defattr(0644,root,root,0755)
