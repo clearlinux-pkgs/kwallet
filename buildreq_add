@@ -9,3 +9,6 @@ libxml2
 libxml2-dev
 libxslt
 libxslt-dev
+kdoctools-dev
+knotifications-dev
+qca-dev
