@@ -9,7 +9,7 @@
 #
 Name     : kwallet
 Version  : 6.2.1
-Release  : 81
+Release  : 82
 URL      : https://download.kde.org/stable/frameworks/6.2/kwallet-6.2.1.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/6.2/kwallet-6.2.1.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/6.2/kwallet-6.2.1.tar.xz.sig
