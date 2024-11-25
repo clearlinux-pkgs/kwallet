@@ -9,7 +9,7 @@
 #
 Name     : kwallet
 Version  : 6.7.0
-Release  : 108
+Release  : 109
 URL      : https://download.kde.org/stable/frameworks/6.7/kwallet-6.7.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/6.7/kwallet-6.7.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/6.7/kwallet-6.7.0.tar.xz.sig
